@@ -4,6 +4,9 @@ Status: Accepted
 
 Date: 2026-08-13
 
+Revised: 2026-08-24 — The main-mod KubeJS document was packed with the main-mod material and then extracted into the
+separate TransportMod repository (ADR 0011); the related-document link below now points there; no decision change.
+
 ## Context
 
 The project needed stable public contracts, a thick gameplay/domain layer, and a place for implementation details
@@ -43,4 +46,4 @@ contracts and `impl` subpackages for implementations.
 
 - `docs/architecture.md`
 - `docs/design-principles.md`
-- `docs/roadmap/kubejs.md`
+- TransportMod repository: `docs/roadmap/kubejs.md` (main-mod KubeJS capability scope, extracted per ADR 0011)

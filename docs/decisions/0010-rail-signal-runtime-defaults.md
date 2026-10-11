@@ -4,6 +4,11 @@ Status: Accepted
 
 Date: 2026-08-20
 
+Revised: 2026-08-28 — The physical form of the ERROR visual (the exclamation overlay on the signal block's side) is
+deferred until dedicated art exists, per ADR 0012: a misconfigured signal keeps behaving as `RED` and the F3 debug
+overlay remains the ERROR indicator. The world form of the block signal itself is now the independent signal block of
+ADR 0012.
+
 ## Context
 
 ADR 0007 and ADR 0008 fixed path-signal evaluation, placement, conflict definition, and the ERROR state, but

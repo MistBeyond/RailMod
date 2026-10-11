@@ -4,6 +4,9 @@ Status: `contract` (section and signal rules; Graph + Dispatch runtime contract 
 
 Parent overview: `docs/roadmap/rail.md`
 
+Revised: 2026-08-28 — Added the block signal world form (independent signal block, ghost side, break-to-remove) and
+deferred the physical ERROR overlay (ADR 0012, ADR 0010 rev.). No graph or aspect semantics change.
+
 ## Summary
 
 Rail sections are the pieces of connected track that signals divide and trains reserve while moving.
@@ -26,14 +29,22 @@ Rail sections are the pieces of connected track that signals divide and trains r
   opposite directions. Adjacent cells are not distance-constrained, so zero-length sections cannot arise.
 - A signal's facing direction at placement is the player's look direction. Re-facing a signal is done only by breaking
   and replacing it; there is no in-place rotation interaction.
+- A block signal is represented in the world by its own signal block (`mrail:rail_block_signal`) standing in the World
+  Grid cell adjacent to the guarded track cell, on the left or the right side of the facing direction (ADR 0012). The
+  signal block survives only while its backing track cell exists; breaking it removes the signal placement. The
+  placement data itself stays in the track cell, so a signal cell remains a complex cell.
+- Shift+use with the block signal item toggles the stack's ghost-preview side (`LEFT`/`RIGHT`); the ghost preview draws
+  both candidate positions beside the aimed-at track cell with the active side highlighted and a facing arrow.
+  Already-placed signals are unaffected. The path signal keeps sneak+use removal because it has no world block.
 - Signal aspects are limited to `RED` and `GREEN`; a misconfigured signal additionally shows an `ERROR` indicator and
   behaves as `RED`.
 - Placement is permissive: signals are not rejected for misconfiguration. A signal shows the `ERROR` indicator and
   behaves as `RED` when its facing side has no track, or (path signals) its facing side never reaches a routing node.
   Repositioning or refacing the signal restores its normal indication. `ERROR` is a configuration/health indicator, not
   a third aspect.
-- The `ERROR` indicator is rendered as an exclamation overlay on the signal block's side and is also marked in the F3
-  debug overlay.
+- The `ERROR` indicator is marked in the F3 debug overlay; a misconfigured block signal renders as `RED` in the world.
+  The physical exclamation overlay on the signal block's side is deferred until dedicated art exists (ADR 0010 rev.,
+  ADR 0012).
 - A path signal placed on a plain straight whose facing side never reaches a routing node is allowed but stays in the
   `ERROR` state until it is placed on a valid approach.
 - Complex signal aspects, additional signal types, and custom signal states are addon extension points.
@@ -60,9 +71,12 @@ Rail sections are the pieces of connected track that signals divide and trains r
 - Signal state is derived from dispatch reservations, manual train presence, and derailment section locks.
 - Signals have a direction; bidirectional track needs signals in both directions.
 - The F3 debug overlay visualizes sections (colored per-section cell boxes with section ids) and signals (markers
-  with facing-direction arrows); sections split by signals show their boundary count in the label. Section color
-  preview during signal placement is planned.
-- Block and path signals use distinct models and colors so the two types are distinguishable at a glance.
+  with facing-direction arrows); sections split by signals show their boundary count in the label. The block signal's
+  ghost placement preview (candidate side cells plus facing arrow) is implemented; section color preview during signal
+  placement is planned.
+- Block and path signals use distinct models and colors so the two types are distinguishable at a glance. The block
+  signal renders through the fixed signal-light template (`block/block_signal`) with the lit lens driven by the
+  resolved aspect; the path signal keeps its in-cell placeholder post until a dedicated model exists.
 - The F3 debug overlay renders path signals with a dedicated marker (shape/label) and colors signal markers by their
   current aspect (`RED`/`GREEN`) or `ERROR` state; highlighting the reserved conflict path is not part of this
   milestone.

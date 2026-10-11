@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=east": {
+      "type": "mrail:rail_block_signal"
+    },
+    "facing=north": {
+      "type": "mrail:rail_block_signal"
+    },
+    "facing=north_east": {
+      "type": "mrail:rail_block_signal"
+    },
+    "facing=north_west": {
+      "type": "mrail:rail_block_signal"
+    },
+    "facing=south": {
+      "type": "mrail:rail_block_signal"
+    },
+    "facing=south_east": {
+      "type": "mrail:rail_block_signal"
+    },
+    "facing=south_west": {
+      "type": "mrail:rail_block_signal"
+    },
+    "facing=west": {
+      "type": "mrail:rail_block_signal"
+    }
+  }
+}

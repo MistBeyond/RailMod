@@ -27,7 +27,7 @@ and manual driving compatible. Signal state semantics live in `docs/roadmap/rail
   complete.
 - A station without freight platforms stops the train and then departs.
 - If a freight platform cannot complete its operation, the train waits.
-- `StationOperation` and `DepartureCondition` are addon extension points; the main mod provides `LOAD`/`UNLOAD` and
+- `StationOperation` and `DepartureCondition` are addon extension points; this mod provides `LOAD`/`UNLOAD` and
   `OPERATION_COMPLETE`.
 - When a red signal or reserved section blocks the route, an automatic train stops and waits, and retries when the
   blocking condition clears (reservation, occupancy, or signal-state change; see the runtime contract).

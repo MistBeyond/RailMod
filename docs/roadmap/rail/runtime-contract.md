@@ -4,6 +4,13 @@ Status: `accepted` (Graph + Dispatch MVP; binding for implementation)
 
 Parent overview: `docs/roadmap/rail.md`
 
+Revised: 2026-08-24 — Reworded "the main mod" to "this mod" after the module split (ADR 0011): the railway mod is the
+mod of this project; no behavior change.
+
+Revised: 2026-08-24 — Package names raised one level after the module split (ADR 0011): `api.rail.graph.*` →
+`api.graph.*`, `api.rail.dispatch.*` → `api.dispatch.*`, `api.rail.station.*` → `api.station.*`,
+`core.rail.*` → `core.*`, `api.rail.*` → `api.*`, `internal.rail` → `internal`. No contract change.
+
 ## Purpose
 
 This document defines the minimum runtime contract for the railway Graph + Dispatch MVP. It is binding for future
@@ -26,19 +33,19 @@ implemented in this documentation-only change.
 
 ## Graph Ownership and Lifecycle
 
-- `core.rail.RailNetworkManager` MUST own one rail network per `ServerLevel`.
+- `core.RailNetworkManager` MUST own one rail network per `ServerLevel`.
 - The manager MUST own the graph, dispatch state, train aggregates, dirty tracking, validation, and save/load
   coordination.
 - The manager MUST NOT be a static `ConcurrentHashMap`.
 - All writes MUST execute on the server main thread.
-- Content packages MUST report world changes through `api.rail` or `core.rail` entry points; `core` MUST NOT depend on
+- Content packages MUST report world changes through `api` or `core` entry points; `core` MUST NOT depend on
   `block`, `item`, `entity`, or `client`.
 - `World Grid` remains an abstract placement reference; it is not a code type or API type.
 
 ## Persistence and Validation
 
 - World blocks are authoritative; the saved graph is a cache.
-- `internal.rail` MUST implement graph cache, train aggregate, timetable, and dispatch persistence.
+- `internal` MUST implement graph cache, train aggregate, timetable, and dispatch persistence.
 - On first load, the manager MUST NOT scan the whole world. It MUST build graph data lazily around nearby trains or
   players.
 - Normal track or signal edits MUST mark the affected region dirty.
@@ -59,7 +66,7 @@ implemented in this documentation-only change.
 
 ## Track Cell Storage, Rendering, Collision, and Occupancy
 
-- `api.rail.graph.TrackCellData` MUST be the read-only view of one track cell's placements and signal placement
+- `api.graph.TrackCellData` MUST be the read-only view of one track cell's placements and signal placement
   information.
 - The main track block MUST use one block ID with a `direction` BlockState property holding one of the four track
   axes (N–S, E–W, NE–SW, NW–SE). The property stores one axis value, not eight one-way directions; the graph adapter
@@ -88,14 +95,14 @@ implemented in this documentation-only change.
   other entities through entity AABBs.
 - Each track cell MUST occupy exactly one `World Grid` block slot. Physical occupancy is decoupled from collision
   shapes: a collision strip MAY overflow its own slot, and that overflow MUST NOT occupy neighboring slots.
-- Track cells MUST NOT support waterlogged states in the main mod.
+- Track cells MUST NOT support waterlogged states in this mod.
 - Visual overflow MUST NOT occupy neighboring slots or create neighboring collision. Collision strip overflow MUST NOT
   create neighboring occupancy or graph connections.
 - Visual overlap MUST NOT create graph connections; connections MUST come only from explicit `TrackPlacement` entries.
 
 ## Train Aggregate and Control Modes
 
-- All trains use the same `core.rail.RailTrainAggregate` model.
+- All trains use the same `core.RailTrainAggregate` model.
 - Manual and automatic are `RailControlMode` values, not separate train classes.
 - Manual mode is driven by player input; automatic mode is driven by `RailTrainSchedule`.
 - Switching to manual MUST pause the automatic schedule and release its route/reservations.
@@ -112,13 +119,13 @@ implemented in this documentation-only change.
 - A station itself MUST NOT load/unload cargo and MUST NOT provide fuel or other complex station features.
 - A station MAY have a behind-chain of freight platforms or other stations.
 - When a train stops at a station, all freight platforms in that station's behind-chain MUST participate.
-- Each freight platform in the main mod MUST have a binary `LOAD` or `UNLOAD` operation. Loading or unloading installs or
+- Each freight platform in this mod MUST have a binary `LOAD` or `UNLOAD` operation. Loading or unloading installs or
   removes a whole cargo body, excluding the underframe.
 - The main departure condition MUST be `OPERATION_COMPLETE`: the train departs after all participating freight platforms
   complete their operations.
 - If a station has no freight platforms behind it, the train MUST stop and then depart.
 - If a freight platform cannot complete its operation, the train MUST wait until the operation can complete.
-- `StationOperation` and `DepartureCondition` MUST be extension points for addons. The main mod registers only
+- `StationOperation` and `DepartureCondition` MUST be extension points for addons. This mod registers only
   `LOAD`/`UNLOAD` and `OPERATION_COMPLETE`.
 - Schedules MUST be started and stopped by the player, and schedule state MUST be persisted.
 - Empty or single-stop schedules MUST be rejected at start.
@@ -171,22 +178,22 @@ implemented in this documentation-only change.
 
 These names are part of the contract but are not implemented in this documentation-only change:
 
-- `api.rail.RailNetworkService`
-- `api.rail.RailNetworkSnapshot`
-- `api.rail.graph.TrackCellData`
-- `api.rail.dispatch.RailTrainSchedule`
-- `api.rail.dispatch.RailTrainStop`
-- `api.rail.dispatch.RailControlMode`
-- `api.rail.station.RailStationId`
-- `api.rail.station.StationOperation`
-- `api.rail.station.DepartureCondition`
+- `api.RailNetworkService`
+- `api.RailNetworkSnapshot`
+- `api.graph.TrackCellData`
+- `api.dispatch.RailTrainSchedule`
+- `api.dispatch.RailTrainStop`
+- `api.dispatch.RailControlMode`
+- `api.station.RailStationId`
+- `api.station.StationOperation`
+- `api.station.DepartureCondition`
 
-Existing `api.rail.graph.RailGraphView` and `api.rail.dispatch.DispatchService` remain foundations.
+Existing `api.graph.RailGraphView` and `api.dispatch.DispatchService` remain foundations.
 
 `RailTrainStop` contains a `RailStationId` plus generic stop settings. It does not contain a raw graph node ID.
 
 API records are limited to IDs, requests, and result snapshots. Domain records such as graph nodes, edges, sections,
-train aggregates, and persistence structures live in `core.rail` or `internal.rail`.
+train aggregates, and persistence structures live in `core` or `internal`.
 
 ## Acceptance Scenarios
 
@@ -207,7 +214,7 @@ train aggregates, and persistence structures live in `core.rail` or `internal.ra
 12. All freight platforms in a station's behind-chain MUST execute their configured operations; the train departs after
     all operations complete.
 13. A station without freight platforms MUST stop the train and then depart.
-14. The main mod MUST only provide `LOAD` and `UNLOAD` station operations and the `OPERATION_COMPLETE` departure
+14. This mod MUST only provide `LOAD` and `UNLOAD` station operations and the `OPERATION_COMPLETE` departure
     condition.
 15. If an operation cannot complete, the train MUST wait; after completion, the train continues.
 16. A simple straight or diagonal 45 track cell MUST NOT use a block entity.
@@ -247,3 +254,4 @@ train aggregates, and persistence structures live in `core.rail` or `internal.ra
 - `docs/decisions/0007-rail-path-signals-and-blocked-train-wakeup.md`
 - `docs/decisions/0008-rail-signal-placement-conflict-and-error-state.md`
 - `docs/decisions/0010-rail-signal-runtime-defaults.md`
+- `docs/decisions/0011-module-split-mrail-mtm.md`

@@ -1,0 +1,8 @@
+{
+  "block.mrail.rail_block_signal": "Rail Block Signal",
+  "block.mrail.rail_track_cell": "Rail Track Cell",
+  "entity.mrail.test_train": "Test Train",
+  "item.mrail.rail_block_signal": "Rail Block Signal",
+  "item.mrail.rail_path_signal": "Rail Path Signal",
+  "item.mrail.test_train_spawner": "Test Train Spawner"
+}

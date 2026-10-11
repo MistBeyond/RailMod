@@ -4,6 +4,9 @@ Status: `contract` (implementation notes; Graph + Dispatch runtime contract acce
 
 Parent overview: `docs/roadmap/rail.md`
 
+Revised: 2026-08-24 — Package names raised one level after the module split (ADR 0011): `api.rail.*` → `api.*`,
+`core.rail` → `core`, `internal.rail` → `internal`. No implementation direction change.
+
 ## Summary
 
 This document records the railway implementation direction for the Graph + Dispatch MVP. The binding behavior contract is
@@ -11,14 +14,14 @@ This document records the railway implementation direction for the Graph + Dispa
 
 ## Confirmed Directions
 
-- `api.rail` contains service interfaces, read-only views, ID/request/result records, and stable public enums.
-- `core.rail` contains `RailNetworkManager`, rail gameplay/business logic, public rail entry points, train aggregates,
+- `api` contains service interfaces, read-only views, ID/request/result records, and stable public enums.
+- `core` contains `RailNetworkManager`, rail gameplay/business logic, public rail entry points, train aggregates,
   dispatch implementation, and internal domain records such as graph nodes, edges, and sections.
-- `internal.rail` implements graph cache, train aggregate, timetable, and dispatch persistence.
-- `api.rail.graph.TrackGraphSource` adapts world cells to track placements. `core.rail` owns graph collection,
+- `internal` implements graph cache, train aggregate, timetable, and dispatch persistence.
+- `api.graph.TrackGraphSource` adapts world cells to track placements. `core` owns graph collection,
   connectivity assembly, reachability, validation, and connected-component rebuilds; content packages only map block
   states to that source.
-- `api.rail.graph.TrackCellData` is the read-only track cell contract. Content packages map BlockState and block entity
+- `api.graph.TrackCellData` is the read-only track cell contract. Content packages map BlockState and block entity
   data into it.
 - The track block uses one block ID with a `direction` property holding one of the four track axes (N–S, E–W, NE–SW,
   NW–SE); the property stores one axis value, not eight one-way directions. Simple cells have no block entity; complex
@@ -41,13 +44,15 @@ This document records the railway implementation direction for the Graph + Dispa
 - Validation covers local tracks plus neighboring sections. A mismatch rebuilds the affected connected component.
 - Abstract interfaces are planned for pathfinding, route locking, stepwise reservation, timetable behavior, and signal
   state queries.
-- All trains use `core.rail.RailTrainAggregate`; manual and automatic are `RailControlMode` values.
+- All trains use `core.RailTrainAggregate`; manual and automatic are `RailControlMode` values.
 - Timetable stops reference `RailStationId`; station and freight platform block implementation is required later for the
   timetable MVP.
 - The F3 debug overlay (rail sections with colors and labels, plus signal markers with direction arrows) is
-  implemented. Section color preview for signal placement, performance work, and further tests are planned.
-- KubeJS integration should expose read access through immutable `RailNetworkSnapshot`, may use `core.rail`, and logs rare
-  direct `internal.rail` exceptions.
+  implemented. The block signal renders through its own block and a blockstate-driven custom unbaked model mirroring
+  the fixed signal-light template (ADR 0012), with the ghost placement preview beside the aimed-at track cell.
+  Performance work and further tests are planned.
+- KubeJS integration should expose read access through immutable `RailNetworkSnapshot`, may use `core`, and logs rare
+  direct `internal` exceptions.
 
 ## Scope
 
@@ -56,7 +61,7 @@ This document records the railway implementation direction for the Graph + Dispa
 - Track cell storage, rendering, collision, and occupancy.
 - Pathfinding, timetable, and reservation behavior.
 - Deferred graph validation and connected-component rebuild.
-- `api.rail`, `core.rail`, and `internal.rail` package responsibilities.
+- `api`, `core`, and `internal` package responsibilities.
 - Train aggregate, manual/automatic control modes, and collision/derailment state.
 - KubeJS read-only snapshot access.
 

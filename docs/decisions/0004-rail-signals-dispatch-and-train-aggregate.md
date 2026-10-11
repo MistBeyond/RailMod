@@ -8,6 +8,12 @@ Revised: 2026-08-17 — The "Player-visible signal state is limited to `RED` and
 stay limited to `RED`/`GREEN`, but a misconfigured signal additionally shows an `ERROR` indicator and behaves as `RED`.
 Recorded in ADR 0008.
 
+Revised: 2026-08-24 — Reworded "the main mod" to "this mod" after the module split (ADR 0011); the railway mod is the
+mod of this project. No behavior change.
+
+Revised: 2026-08-24 — Package names raised one level after the module split (ADR 0011): `core.rail.RailTrainAggregate` →
+`core.RailTrainAggregate`. No decision change.
+
 ## Context
 
 The rail system needs signal semantics, automatic scheduling, station/platform behavior, and a train model that supports
@@ -20,7 +26,7 @@ both manual and automatic driving without creating two separate implementations.
   signal states are addon extension points.
 - Block signals are directional and protect the next section in their facing direction.
 - Path signals are directional and reserve the full conflict path through a junction until the train exits.
-- Use one `core.rail.RailTrainAggregate` for all trains. Manual and automatic are `RailControlMode` values.
+- Use one `core.RailTrainAggregate` for all trains. Manual and automatic are `RailControlMode` values.
 - Manual mode is driven by player input; automatic mode is driven by `RailTrainSchedule`.
 - Switching to manual pauses the automatic schedule and releases its route/reservations.
 - Use explicit `ONE_WAY` and `LOOP` schedule types with ordered stops.
@@ -30,13 +36,13 @@ both manual and automatic driving without creating two separate implementations.
 - Stations themselves do not load/unload cargo and do not provide fuel or other complex station features.
 - A station may have a behind-chain of freight platforms or other stations.
 - When a train stops at a station, all freight platforms in that station's behind-chain participate in the stop.
-- Each freight platform has a binary operation in the main mod: `LOAD` or `UNLOAD`. The operation installs or removes a
+- Each freight platform has a binary operation in this mod: `LOAD` or `UNLOAD`. The operation installs or removes a
   whole cargo body, excluding the underframe.
 - The main departure condition is `OPERATION_COMPLETE`: the train departs after all participating freight platforms
   complete their operations.
 - If a station has no freight platforms behind it, the train stops and then departs.
 - If a freight platform cannot complete its operation, the train waits until the operation can complete.
-- `StationOperation` and `DepartureCondition` are extension points for addons; the main mod registers only
+- `StationOperation` and `DepartureCondition` are extension points for addons; this mod registers only
   `LOAD`/`UNLOAD` and `OPERATION_COMPLETE`.
 - Schedules are player-started, persisted, editable while running, and reject empty or single-stop lists.
 - Automatic routes lock at departure and reserve/release sections stepwise.

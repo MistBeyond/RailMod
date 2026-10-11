@@ -20,12 +20,12 @@ implement them.
 - A station itself does not load/unload cargo and does not provide fuel or other complex station features.
 - A station may have a behind-chain of freight platforms or other stations.
 - When a train stops at a station, all freight platforms in that station's behind-chain participate in the stop.
-- Each freight platform in the main mod has a binary operation: `LOAD` or `UNLOAD`.
+- Each freight platform in this mod has a binary operation: `LOAD` or `UNLOAD`.
 - Loading or unloading installs or removes a whole cargo body, excluding the freight underframe.
 - The main departure condition is `OPERATION_COMPLETE`: the train departs after all participating platforms complete.
 - A station without freight platforms stops the train and then departs.
 - If a freight platform cannot complete its operation, the train waits.
-- `StationOperation` and `DepartureCondition` are extension points for addons; the main mod provides only
+- `StationOperation` and `DepartureCondition` are extension points for addons; this mod provides only
   `LOAD`/`UNLOAD` and `OPERATION_COMPLETE`.
 
 ## Scope

@@ -6,10 +6,10 @@ is the **metadata of this documentation subtree**.
 
 ## Purpose
 
-`roadmap/` holds the per-mode detail documents behind `docs/roadmap.md`: each transport mode (rail, truck, drone, water)
-and the KubeJS integration track gets its own document with gameplay and implementation detail, and the rail mode gets a
-subdirectory of binding contracts and implementation notes. The implementation order itself lives in
-`docs/roadmap.md`; this subtree only holds the detail that each node references.
+`roadmap/` holds the per-mode detail documents behind `docs/roadmap.md`: the railway mode (`rail`) detail and binding
+contracts of this project. The implementation order itself lives in `docs/roadmap.md`; this subtree only holds the
+detail that each
+entry references.
 
 ## Overview
 
@@ -18,21 +18,13 @@ subdirectory of binding contracts and implementation notes. The implementation o
 | `README.md` | This document: directory overview and content ownership rules         |
 | `rail.md`   | Railway mode overview and index; roadmap node 1                       |
 | `rail/`     | Railway contracts and implementation notes; index in `rail/README.md` |
-| `truck.md`  | Truck mode detail; roadmap node 2 (placeholder)                       |
-| `drone.md`  | Drone mode scope draft; roadmap node 3 (placeholder)                  |
-| `water.md`  | Water mode scope draft; roadmap node 4 (placeholder)                  |
-| `kubejs.md` | KubeJS integration capability scope; parallel track from node 0       |
 
 ## Content Ownership
 
 | Document    | Belongs here                                                                   | Does not belong here                                                                   |
 |-------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
 | `rail.md`   | Railway overview, design summary, links to the `rail/` contracts               | Contract detail (→ `rail/`), implementation order (→ `docs/roadmap.md`)                |
-| `truck.md`  | Truck gameplay and implementation detail, KubeJS access points                 | Architecture rulings (→ `docs/decisions/`), implementation order (→ `docs/roadmap.md`) |
-| `drone.md`  | Drone scope draft and open questions                                           | Same as `truck.md`                                                                     |
-| `water.md`  | Water scope draft and open questions                                           | Same as `truck.md`                                                                     |
-| `kubejs.md` | KubeJS capability scope across all modes                                       | Mode-specific content registration design (→ the mode docs)                            |
-| `rail/`     | Railway binding contracts and implementation notes (owned by `rail/README.md`) | Global rules, other modes' detail                                                      |
+| `rail/`     | Railway binding contracts and implementation notes (owned by `rail/README.md`) | Global rules                                                                           |
 
 ## Ownership Rules
 

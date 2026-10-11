@@ -4,6 +4,12 @@ Status: Accepted
 
 Date: 2026-08-14
 
+Revised: 2026-08-24 — Reworded "the main mod" to "this mod" after the module split (ADR 0011); the railway mod is the
+mod of this project. No behavior change.
+
+Revised: 2026-08-24 — Package names raised one level after the module split (ADR 0011): `api.rail.graph.*` →
+`api.graph.*`, `core.rail` → `core`. No decision change.
+
 Revised: 2026-08-16 — Collision shapes changed from 16x16-clipped narrow rails to gauge-wide strips (24 px gauge plus
 both rail half-widths, i.e. 26 px) centered on the track axis that may overflow neighboring cells; physical occupancy is
 decoupled from collision shapes. See the decision bullets below.
@@ -39,7 +45,7 @@ rendering, collision, and occupancy model that can represent complex track cells
   segment and emits both directional placements of the stored axis. A simple cell has no block entity.
 - Treat a cell as complex when it contains multiple placements, a curve, a curve ramp, a crossing, or a signal. A complex
   cell has a block entity.
-- Add `api.rail.graph.TrackCellData` as a read-only view containing `Set<TrackPlacement>` and signal placement
+- Add `api.graph.TrackCellData` as a read-only view containing `Set<TrackPlacement>` and signal placement
   information.
 - Make `TrackGraphSource` read `TrackCellData` instead of directly reading BlockState axis. The world adapter checks the
   block entity first and falls back to the BlockState direction when no block entity exists.
@@ -60,7 +66,7 @@ rendering, collision, and occupancy model that can represent complex track cells
   entities through entity AABBs.
 - Give each track cell exactly one `World Grid` block slot. Physical occupancy is decoupled from collision shapes:
   collision strip overflow does not occupy neighboring slots.
-- Do not support waterlogged track cells in the main mod.
+- Do not support waterlogged track cells in this mod.
 - Allow visual overflow to pass through any neighboring block. It does not occupy neighboring slots and does not create
   neighboring collision. Collision strip overflow does not create neighboring occupancy or graph connections.
 - Do not create graph connections from visual overlap. Connections come only from explicit `TrackPlacement` entries in
@@ -69,7 +75,7 @@ rendering, collision, and occupancy model that can represent complex track cells
 ## Consequences
 
 - Complex track geometry can be stored and rendered without BlockState explosion.
-- `core.rail` remains independent of concrete block and renderer implementations.
+- `core` remains independent of concrete block and renderer implementations.
 - Collision and occupancy have one shared source of truth: `TrackCellData`.
 - The existing `TestTrackBlock` will be replaced when the implementation contract is implemented.
 - Station and freight platform block entities remain a separate future ADR.

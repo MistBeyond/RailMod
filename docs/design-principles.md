@@ -13,8 +13,8 @@ section stays short by design; the rationale lives here.
   `RailSection` live in `core`/`internal`. `core.<feature>` contains gameplay and business rules, services, state
   machines, feature public entry points, lifecycle logic, and `api` implementations. `internal.<feature>` is a minimal
   placeholder for implementation details that do not yet fit `core`.
-- **Example**: `api.rail` exposes `RailGraphView`, `DispatchService`, and `RailPathfinder` instead of directly exposing
-  `RailNode`/`RailEdge` records. `core.rail` owns the implementation and graph state.
+- **Example**: `api.graph` exposes `RailGraphView`, and `api.dispatch` exposes `DispatchService` and `RailPathfinder`
+  instead of directly exposing `RailNode`/`RailEdge` records. `core` owns the implementation and graph state.
 - **When to break**: Entities, blocks, items, and block entities are framework types and belong to content packages. They
   may use `core`; `core` must not depend on them. `internal` use can be added when code practice supports it.
 
@@ -26,7 +26,7 @@ section stays short by design; the rationale lives here.
   packages such as `block`, `item`, `entity`, and `client` are final presentation/consumers and can depend on `core`;
   `core` must not depend on them. `internal`
   dependency rules are left open until code practice defines them.
-- **Example**: A rail block calls `core.rail` entry points instead of making `core.rail` depend on `block`.
+- **Example**: A rail block calls `core` entry points instead of making `core` depend on `block`.
 - **When to break**: Do not break this for new code. If a cycle is needed, extract shared logic into `api`, `config`, or
   `util` first.
 
@@ -59,8 +59,8 @@ section stays short by design; the rationale lives here.
 - **Why**: Stable contracts reduce coupling; implementation details should be free to change.
 - **How to apply**: Prefer `api` for cross-feature and external access. Content packages call `core.<feature>` public
   entry points. Direct `internal` access is allowed when concrete code needs it, but should remain deliberate.
-- **Example**: Integration code reads rail state through `api.rail`; when the contract is not enough, it may use
-  `core.rail`. Direct use of `internal.rail` is evaluated case by case.
+- **Example**: Integration code reads rail state through `api`; when the contract is not enough, it may use
+  `core`. Direct use of `internal` is evaluated case by case.
 - **When to break**: Framework registration or lifecycle hooks may need direct concrete access. Document these cases
   and keep them rare.
 

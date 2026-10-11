@@ -31,7 +31,7 @@ Tracks are the foundation of the railway network. They provide train paths, rail
 - Same-level intersections can form routing nodes; different-height crossings do not connect.
 - Tracks are bidirectional by default; directional signals define one-way movement.
 - Real-world track width can inform visual design, but exact model scale is open.
-- Track cells use `api.rail.graph.TrackCellData` as the read-only world adapter contract.
+- Track cells use `api.graph.TrackCellData` as the read-only world adapter contract.
 - The main track block uses one block ID with a `direction` property holding one of the four track axes (N–S, E–W,
   NE–SW, NW–SE); the property stores one axis value, not eight one-way directions. Simple cells have no block entity;
   complex cells have a block entity.

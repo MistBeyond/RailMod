@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "direction=e_w": {
+      "type": "mrail:track_cell"
+    },
+    "direction=n_s": {
+      "type": "mrail:track_cell"
+    },
+    "direction=ne_sw": {
+      "type": "mrail:track_cell"
+    },
+    "direction=nw_se": {
+      "type": "mrail:track_cell"
+    }
+  }
+}

@@ -4,6 +4,13 @@ Status: Accepted
 
 Date: 2026-08-16
 
+Revised: 2026-08-24 — Package path updated after the module split (ADR 0011): the proposed model package is
+`com.mistbeyond.rail.client.model` (was `com.mistbeyond.transport.client.rail.model`). No rendering decision change.
+
+Revised: 2026-08-24 — The rename landed with the feature subpackage retained: the model package is now
+`com.mistbeyond.rail.client.rail.model` (the proposed `com.mistbeyond.rail.client.model` was not used). No rendering
+decision change.
+
 ## Context
 
 Complex track cells (crossings, curves, curve ramps, signals) hold multiple `TrackPlacement` entries inside one block
@@ -25,7 +32,7 @@ before this analysis; this ADR replaces that rendering contract.
   MVP and remains acceptable as a fallback if the baked-model route proves infeasible, but it is not the chosen
   design.)
 - Move the shared rail geometry parameters out of the datagen source set into `main` (proposed
-  `com.mistbeyond.transport.client.rail.model`), because `datagen` depends on `main` and `main` must not depend on
+  `com.mistbeyond.rail.client.model`), because `datagen` depends on `main` and `main` must not depend on
   `datagen`. The datagen `TrackModelGenerator` then imports them. After extraction, re-run datagen and verify the
   generated `track_diagonal.json` is byte-identical to the pre-migration output.
 - Geometry generation (curve sampling, rail sweeping, sleeper placement) is pure math in `main` and MUST be unit

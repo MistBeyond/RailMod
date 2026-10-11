@@ -17,3 +17,5 @@ every task.
 | 0008 | Rail Signal Placement, Conflict, and Error-State Rules                            | Accepted                   | `docs/decisions/0008-rail-signal-placement-conflict-and-error-state.md`       |
 | 0009 | Class Finality Default — Non-Final Unless a Concrete Reason                       | Accepted                   | `docs/decisions/0009-class-finality-default.md`                               |
 | 0010 | Rail Signal Runtime Defaults — Tail Exit, Contention, ERROR Visual, and Re-facing | Accepted                   | `docs/decisions/0010-rail-signal-runtime-defaults.md`                         |
+| 0011 | Module Split — mrail and mtm as Independent Mods                                | Accepted (rev. 2026-08-24) | `docs/decisions/0011-module-split-mrail-mtm.md`                               |
+| 0012 | Rail Signal World Representation — Independent Signal Block, Ghost Side, and Break-to-Remove | Accepted      | `docs/decisions/0012-rail-signal-world-representation.md`                     |

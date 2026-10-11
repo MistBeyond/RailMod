@@ -16,7 +16,7 @@ The binding runtime contract is `docs/roadmap/rail/runtime-contract.md`. Archite
 
 - Tracks use real-world rail models and widths as design references; exact gauge and block scale are still open.
 - Tracks are represented by a server-side track graph for logic plus world blocks and models for presentation.
-- Track cells use `api.rail.graph.TrackCellData` with one block ID. Simple cells use BlockState direction; complex cells
+- Track cells use `api.graph.TrackCellData` with one block ID. Simple cells use BlockState direction; complex cells
   use a block entity and render through the baked-model route (custom unbaked model + per-block-entity `ModelData`).
 - `World Grid` is an abstract term for the interior of each Minecraft block cell. It is not a code type or API type.
   Full definition is inlined in `docs/roadmap/rail/tracks.md` and `docs/roadmap/rail/sections.md`.

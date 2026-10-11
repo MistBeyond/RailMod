@@ -1,0 +1,252 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"body": "minecraft:block/gray_concrete",
+		"trim": "minecraft:block/black_concrete",
+		"red": "minecraft:block/redstone_block",
+		"green": "minecraft:block/emerald_block",
+		"particle": "#body"
+	},
+	"elements": [
+		{
+			"name": "基座底层",
+			"from": [5, 0, 5],
+			"to": [11, 0.75, 11],
+			"faces": {
+				"north": {"uv": [0, 0, 6, 0.75], "texture": "#body"},
+				"east": {"uv": [0, 0, 6, 0.75], "texture": "#body"},
+				"south": {"uv": [0, 0, 6, 0.75], "texture": "#body"},
+				"west": {"uv": [0, 0, 6, 0.75], "texture": "#body"},
+				"up": {"uv": [0, 0, 6, 6], "texture": "#body"},
+				"down": {"uv": [0, 0, 6, 6], "texture": "#body"}
+			}
+		},
+		{
+			"name": "基座上层",
+			"from": [6.25, 0.75, 6.25],
+			"to": [9.75, 1.75, 9.75],
+			"faces": {
+				"north": {"uv": [0, 0, 3.5, 1], "texture": "#body"},
+				"east": {"uv": [0, 0, 3.5, 1], "texture": "#body"},
+				"south": {"uv": [0, 0, 3.5, 1], "texture": "#body"},
+				"west": {"uv": [0, 0, 3.5, 1], "texture": "#body"},
+				"up": {"uv": [0, 0, 3.5, 3.5], "texture": "#body"},
+				"down": {"uv": [0, 0, 3.5, 3.5], "texture": "#body"}
+			}
+		},
+		{
+			"name": "信号柱",
+			"from": [7.5, 1.75, 7.5],
+			"to": [8.5, 13, 8.5],
+			"faces": {
+				"north": {"uv": [0, 0, 1, 11.25], "texture": "#body"},
+				"east": {"uv": [0, 0, 1, 11.25], "texture": "#body"},
+				"south": {"uv": [0, 0, 1, 11.25], "texture": "#body"},
+				"west": {"uv": [0, 0, 1, 11.25], "texture": "#body"},
+				"up": {"uv": [0, 0, 1, 1], "texture": "#body"},
+				"down": {"uv": [0, 0, 1, 1], "texture": "#body"}
+			}
+		},
+		{
+			"name": "红灯箱",
+			"from": [6.25, 3, 6.25],
+			"to": [9.75, 6.75, 9.75],
+			"faces": {
+				"north": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"east": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"south": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"west": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"up": {"uv": [0, 0, 3.5, 3.5], "texture": "#body"},
+				"down": {"uv": [0, 0, 3.5, 3.5], "texture": "#body"}
+			}
+		},
+		{
+			"name": "红灯箱斜",
+			"from": [6.25, 2.995, 6.25],
+			"to": [9.75, 6.755, 9.75],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 4.875, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"east": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"south": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"west": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"up": {"uv": [0, 0, 3.5, 3.5], "texture": "#body"},
+				"down": {"uv": [0, 0, 3.5, 3.5], "texture": "#body"}
+			}
+		},
+		{
+			"name": "红灯镜面",
+			"from": [6.9, 3.575, 5],
+			"to": [9.1, 5.775, 6.9],
+			"faces": {
+				"north": {"uv": [0, 0, 2.2, 2.2], "texture": "#red"},
+				"east": {"uv": [0, 0, 1.9, 2.2], "texture": "#red"},
+				"south": {"uv": [0, 0, 2.2, 2.2], "texture": "#red"},
+				"west": {"uv": [0, 0, 1.9, 2.2], "texture": "#red"},
+				"up": {"uv": [0, 0, 2.2, 1.9], "texture": "#red"},
+				"down": {"uv": [0, 0, 2.2, 1.9], "texture": "#red"}
+			}
+		},
+		{
+			"name": "红灯镜面斜",
+			"from": [6.9, 3.575, 5.01],
+			"to": [9.1, 5.775, 6.89],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, 4.675, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 2.2, 2.2], "texture": "#red"},
+				"east": {"uv": [0, 0, 1.9, 2.2], "texture": "#red"},
+				"south": {"uv": [0, 0, 2.2, 2.2], "texture": "#red"},
+				"west": {"uv": [0, 0, 1.9, 2.2], "texture": "#red"},
+				"up": {"uv": [0, 0, 2.2, 1.9], "texture": "#red"},
+				"down": {"uv": [0, 0, 2.2, 1.9], "texture": "#red"}
+			}
+		},
+		{
+			"name": "红灯遮檐",
+			"from": [6.5, 6.325, 4.9],
+			"to": [9.5, 6.725, 6.6],
+			"faces": {
+				"north": {"uv": [0, 0, 3, 0.4], "texture": "#trim"},
+				"east": {"uv": [0, 0, 1.7, 0.4], "texture": "#trim"},
+				"south": {"uv": [0, 0, 3, 0.4], "texture": "#trim"},
+				"west": {"uv": [0, 0, 1.7, 0.4], "texture": "#trim"},
+				"up": {"uv": [0, 0, 3, 1.7], "texture": "#trim"},
+				"down": {"uv": [0, 0, 3, 1.7], "texture": "#trim"}
+			}
+		},
+		{
+			"name": "绿灯箱",
+			"from": [6.25, 7.15, 6.25],
+			"to": [9.75, 10.9, 9.75],
+			"faces": {
+				"north": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"east": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"south": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"west": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"up": {"uv": [0, 0, 3.5, 3.5], "texture": "#body"},
+				"down": {"uv": [0, 0, 3.5, 3.5], "texture": "#body"}
+			}
+		},
+		{
+			"name": "绿灯箱斜",
+			"from": [6.25, 7.145, 6.25],
+			"to": [9.75, 10.905, 9.75],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 9.025, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"east": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"south": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"west": {"uv": [0, 0, 3.5, 3.75], "texture": "#body"},
+				"up": {"uv": [0, 0, 3.5, 3.5], "texture": "#body"},
+				"down": {"uv": [0, 0, 3.5, 3.5], "texture": "#body"}
+			}
+		},
+		{
+			"name": "绿灯镜面",
+			"from": [6.9, 7.725, 5],
+			"to": [9.1, 9.925, 6.9],
+			"faces": {
+				"north": {"uv": [0, 0, 2.2, 2.2], "texture": "#green"},
+				"east": {"uv": [0, 0, 1.9, 2.2], "texture": "#green"},
+				"south": {"uv": [0, 0, 2.2, 2.2], "texture": "#green"},
+				"west": {"uv": [0, 0, 1.9, 2.2], "texture": "#green"},
+				"up": {"uv": [0, 0, 2.2, 1.9], "texture": "#green"},
+				"down": {"uv": [0, 0, 2.2, 1.9], "texture": "#green"}
+			}
+		},
+		{
+			"name": "绿灯镜面斜",
+			"from": [6.9, 7.725, 5.01],
+			"to": [9.1, 9.925, 6.89],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, 8.825, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 2.2, 2.2], "texture": "#green"},
+				"east": {"uv": [0, 0, 1.9, 2.2], "texture": "#green"},
+				"south": {"uv": [0, 0, 2.2, 2.2], "texture": "#green"},
+				"west": {"uv": [0, 0, 1.9, 2.2], "texture": "#green"},
+				"up": {"uv": [0, 0, 2.2, 1.9], "texture": "#green"},
+				"down": {"uv": [0, 0, 2.2, 1.9], "texture": "#green"}
+			}
+		},
+		{
+			"name": "绿灯遮檐",
+			"from": [6.5, 10.475, 4.9],
+			"to": [9.5, 10.875, 6.6],
+			"faces": {
+				"north": {"uv": [0, 0, 3, 0.4], "texture": "#trim"},
+				"east": {"uv": [0, 0, 1.7, 0.4], "texture": "#trim"},
+				"south": {"uv": [0, 0, 3, 0.4], "texture": "#trim"},
+				"west": {"uv": [0, 0, 1.7, 0.4], "texture": "#trim"},
+				"up": {"uv": [0, 0, 3, 1.7], "texture": "#trim"},
+				"down": {"uv": [0, 0, 3, 1.7], "texture": "#trim"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"translation": [0, 3, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -135, 0],
+			"translation": [0, 3, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"translation": [0, 0, 0],
+			"scale": [0.55, 0.55, 0.55]
+		},
+		"fixed": {
+			"rotation": [-90, 0, 0],
+			"translation": [0, 0, -4],
+			"scale": [0.55, 0.55, 0.55]
+		}
+	},
+	"groups": [
+		{
+			"name": "基座",
+			"origin": [8, 8, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1]
+		},
+		{
+			"name": "信号柱",
+			"origin": [8, 8, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [2]
+		},
+		{
+			"name": "红灯机构（下）",
+			"origin": [8, 4.875, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [3, 4, 5, 6, 7]
+		},
+		{
+			"name": "绿灯机构（上）",
+			"origin": [8, 9.025, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [8, 9, 10, 11, 12]
+		}
+	]
+}

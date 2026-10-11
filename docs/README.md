@@ -9,7 +9,7 @@ organized and what belongs where.
 
 `docs/` is the single home for the project's documentation: it decides what to build and in which order
 (`roadmap.md`), where code belongs (`architecture.md`), how new code should be designed (`design-principles.md`),
-and which decisions were made (`decisions/`), plus per-mode detail documents (`roadmap/`).
+and which decisions were made (`decisions/`), plus the railway detail (`roadmap/`).
 
 ## Overview
 
@@ -21,7 +21,7 @@ and which decisions were made (`decisions/`), plus per-mode detail documents (`r
 | `design-principles.md` | Design principles and their rationale                             |
 | `decisions/`           | Accepted decision records (ADRs) and their index                  |
 | `features/`            | User-authored, code-specific feature specs (reserved)             |
-| `roadmap/`             | Transport-mode detail documents                                   |
+| `roadmap/`             | Railway (mrail) detail and contracts                                     |
 
 ## Content Ownership
 
@@ -32,7 +32,7 @@ and which decisions were made (`decisions/`), plus per-mode detail documents (`r
 | `design-principles.md` | Design principles, rationale, exception criteria                                | Concrete package placement, feature design                                                         |
 | `decisions/`           | Confirmed decisions as ADRs plus their index                                    | Unconfirmed ideas, expanded implementation detail                                                  |
 | `features/`            | Code-specific specs the user explicitly created or maintains                    | Anything not created by the user                                                                   |
-| `roadmap/`             | Gameplay and implementation detail for each transport mode, contracts           | Architecture rulings                                                                               |
+| `roadmap/`             | Railway gameplay and implementation detail, contracts                    | Architecture rulings                                                                               |
 
 ## Ownership Rules
 
